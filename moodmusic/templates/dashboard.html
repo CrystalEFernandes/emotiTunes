@@ -1,0 +1,502 @@
+{% load static %}
+<html lang="en">
+  <style>
+    .profile {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        color: black;
+        min-width: 10rem; 
+    }
+
+    .profile:hover .profile-menu {
+        display: block;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>EmotiTunes</title>
+    
+      <link rel="stylesheet" href="/static/style.css">
+  </head>
+  
+  <body>
+    <div class="maincontainer" style="max-height: 100vh; overflow: hidden; " custom="" attribute="0">
+      <div class="sidebar" style="height: 100vh; overflow-y: auto;">
+        <div class="loadingSideBar" style="transition: apacity 0.5s ease 0s; opacity: 0; display: none;">
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+          <div class="loadingElSidebar"></div>
+  
+        </div>
+        <div class="secondarysidebarsection"></div>
+        <div class="sidebaruppersection">
+          <img src="{% static 'emotitunes-high-resolution-logo.png' %}" alt="Logo" style="width: 70px; height: 70px; border-radius: 50%;margin-left: 1rem;margin-bottom: 1rem;" >
+          <p class="icontext" style="margin-left: 1rem;">Welcome Anonymous</p>
+          <div class="icon" id="homeicon">
+            <span id="homeicon-svg" class="material-symbols-outlined">Home</span>
+          <p class="icontext" id="homeicon-text">Home</p> 
+          </div>
+       
+          <div id="searchicon" class="icon">
+            <span id="searchicons-svg" class="material-symbols-outlined">search</span>
+            <p class="icontext" id="searchicon-text">Search</p>
+          </div>
+        </div>
+        <div class="sidebarlowersection">
+          <div class="icon" id="libraryicon">
+            
+            <p class="icontext" id="libraryicon-text">Take Your Music Experience To The Next Level</p>
+            
+            
+          </div>
+          <div class="tagcontainer" style="display: flex;flex-direction: column;">
+            <span id="crossicontag-svg" class="material-symbols-outlined">close</span>
+            <div style="display: flex;">
+              <span class="playlisttag" id="captureButton">Capture</span>
+              <span class="artisttag" id="detectButton">Detect</span>
+            </div>
+            <video id="video" width="300" height="300" autoplay playsinline style="margin-left: -1.5rem;"></video>
+          </div>
+            
+          <div id="result" class="icontext" style="margin-left: 1rem;"></div>
+          <div class="icon" id="recenticon">
+            <form>
+              
+              <button>
+                <span id="searchicons-svg2" class="material-symbols-outlined">search</span>
+              </button>
+              <input type="text" placeholder="Search in your library" id="searchtextfeild" name="song" autocomplete="off">
+              <span id="crossicon-svg" class="material-symbols-outlined">close</span>
+            </form>
+  
+            <div class="recenticon-cont">
+              <span class="recenticon-text">Recents</span>
+              <span id="recenticon-svg" class="material-symbols-outlined">
+                density_small
+              </span>
+            </div>
+          </div>
+          <div class="defaultlistings">            
+            <div class="artistsideblock1" id="yoyohoneysingh">
+              <img src="https://i.scdn.co/image/ab6761610000e5eb29cf7f1a56f5ff1911f6a0ef" class="playlist-thumb">
+              <div class="textforartist">
+                <p class="artistname">Yo Yo Honey Singh</p>
+                <p class="thumbnaillabel">Artist</p>
+              </div>
+            </div>
+            <div class="artistsideblock1" id="sonunigam">
+              <img src="https://i.scdn.co/image/ab6761610000e5ebbc959d7569618ec2af2210f5" class="playlist-thumb">
+              <div class="textforartist">
+                <p class="artistname">Sonu Nigam</p>
+                <p class="thumbnaillabel">Artist</p>
+              </div>
+            </div>
+            <div class="failedtosearch">
+              <h3></h3>
+              <p>Try searching again using different spelling or keyword.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="musicBar">
+        <div id="loadingMusicBar" style="padding: 0px; overflow: hidden; transition: apacity 0.5s ease 0s; opacity: 0; display: none;" class="loadingSideBar">
+          <div class="loadingElMusicbar">
+            <div class="loadingMusicbarEl"></div>
+          <div class="loadingMusicbarEl"></div>
+          <div class="loadingMusicbarEl"></div>
+          </div>
+        </div>
+        <div class="currentSong">
+          <img src="https://i.scdn.co/image/ab67616d00001e02021d7017f73387b008eab271" class="main-window-playlist-thumb">
+          <div class="currentMusic-Player">Satranga<p>Arijit Singh, Shreyas Puranik</p></div>
+          <span id="likeicon" class="material-symbols-outlined">
+              favorite
+            </span>
+        </div>
+        <div class="controls">
+          <div class="mainControls">
+            <span class="material-symbols-outlined" id="controlicon-shuffle">
+              shuffle
+              </span>
+            <span class="material-symbols-outlined" id="controlicon-prev">
+              skip_previous
+              </span>  
+            <span class="material-symbols-outlined" id="controlicon-play">
+              play_circle
+              </span>
+              <span class="material-symbols-outlined" id="controlicon-next">
+                skip_next
+                </span>
+                <span class="material-symbols-outlined" id="controlicon-loop">
+                  laps
+                  </span>
+          </div>
+          <div class="centerControls">
+            <p id="currentTime">00:00</p>
+            <div class="progressBar">
+              <div class="pbarTargetArea"></div>
+              <div class="progressBarFill">
+                <div id="progressbarBullet"></div>
+              </div>
+            </div>
+            <p id="totalDuration">
+              3:30
+            </p>            
+          </div>            
+        </div>
+        <div class="sideControls">
+          <span id="sideControls-veiw" class="material-symbols-outlined">
+            slideshow
+            </span>
+            <span id="sideControls-sound" class="material-symbols-outlined">volume_down</span>
+          <div class="volumeBar">
+            <div class="vbarTargetArea"></div>
+            <div class="volumeBarFill" style="width: 10%;">
+              <div id="volumebarBullet"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mainwindow" style="background-image: linear-gradient(to top, rgb(18, 18, 18) 40%, rgb(85, 28, 28));">
+        <div class="loadingMainWindow" style="transition: all 0.5s ease 0s; opacity: 0; display: none;">
+         <div class="loadingNav">      
+            <div class="loadingElSidebar1"></div>
+            <div class="loadingElSidebar2"></div>
+           </div>
+          
+          <div style="margin-top:20vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          <div style="margin-top:5vh ;width:30%;" class="loadingElMainwindow"></div>
+          <div class="loadingElMainwindowCardCont">
+            <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div> 
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          <div class="loadingElCard"></div>
+          </div>
+          
+        </div>
+        <nav class="mainNav" style="background-color: transparent; box-shadow: none;">
+          
+          <nav>
+            <span id="chev1" class="material-symbols-outlined">
+              arrow_back_ios_new
+            </span>
+            <span id="chev" class="material-symbols-outlined">
+              arrow_forward_ios
+            </span>
+            <div class="profile">
+              <img src="https://lh3.googleusercontent.com/a/ACg8ocJhyjBqGFbQGs9SYJUCevspX0GwSJKbYSCdbpjUrakHr4g=s288-c-no" id="profile-image">
+              <div class="profile-menu" id="profile-menu">
+                  <p>Name: John Doe</p>
+                  <p>Email: john@example.com</p>
+              </div>
+          </div>
+            <span id="followme">SignUp/Login</span>
+            
+            <span id="bell-icon" class="material-symbols-outlined">
+              notifications
+            </span>
+            
+                    </nav>
+          <div class="tagcontainer2">
+            <span id="crossicontag-svg" class="material-symbols-outlined">close</span>
+            <span class="alltag">All</span>
+            
+            <span class="playlisttag">Playlists</span>
+          </div>
+        </nav>
+  
+        <div class="uppersection1-mainwindow">
+          <div class="uppercard">
+            <img src="https://misc.scdn.co/liked-songs/liked-songs-64.png" class="main-window-playlist-thumb">Liked
+            Songs<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+          <div class="uppercard">
+            <img src="https://i.scdn.co/image/ab67616d000048512432edc97b465e6db54d356b" class="main-window-playlist-thumb">Phir Mohobbat (Md.Irfan, Arijit Singh)<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+          <div class="uppercard">
+            <img src="https://i.scdn.co/image/ab67616d000048517b93fd8b0ade33ceb9d536de" class="main-window-playlist-thumb">Duniyaa (Akhil, Dhvani Bhanushali<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+        </div>
+        <div class="uppersection2-mainwindow">
+          <div class="uppercard">
+            <img src="https://i.scdn.co/image/ab67616d00004851333548f23189291acdee787d" class="main-window-playlist-thumb">4:10 AM (DIVINE, Lal Chand Yamla Jatt)<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+          <div class="uppercard">
+            <img src="https://i.scdn.co/image/ab67616d00004851021d7017f73387b008eab271" class="main-window-playlist-thumb">Satranga (Arijit Singh, Shreyas Puranik)<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+          <div class="uppercard">
+            <img src="https://i.scdn.co/image/ab67616d000048514cfe2d352da6d7910961377f" class="main-window-playlist-thumb">Labon Ko (Pritam, KK)<span id="playicon" class="material-symbols-outlined">
+              play_arrow
+            </span>
+          </div>
+        </div>
+  
+        <h3>Newly Added Songs</h3>
+        <div class="songcontainer1">
+            
+          {% for song in songs %}
+          <div class="songCard" onclick="playSong('{{ song.mp3.url }}', '{{ song.title }}', '{{ song.artist }}', '{{ song.image.url }}')">
+              <span id="cardplayicon" class="material-symbols-outlined">play_arrow</span>
+              <img src="{{ song.image.url }}" alt="{{ song.title }}" class="cardImage">
+              <p class="songName">{{ song.title }}</p>
+              <p class="songDescription">
+                  {{ song.artist }}<br>
+                  &nbsp;
+              </p>
+          </div>
+          {% endfor %}
+            
+        </div>
+        <h3>Songs According To Your Mood</h3>
+        {% if mood_label %}
+        
+        
+            <h2>Songs for Mood: <div id="result" class="icontext" style="margin-left: 1rem;"></div></h2>
+        {% else %}
+        {% endif %}
+        
+        <div class="songcontainer1" id="songContainer">
+            <!-- Placeholder for songs -->
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <audio id="audioPlayer" src="" type="audio/mp3"></audio>
+    <script src="/static/app.js"></script>
+    <script src="/static/music.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          var video = document.getElementById('video');
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+
+          // Get video stream from webcam
+          navigator.mediaDevices.getUserMedia({ video: true })
+              .then(function(stream) {
+                  video.srcObject = stream;
+                  video.play();
+              })
+              .catch(function(err) {
+                  console.error('Error accessing webcam:', err);
+              });
+
+          // Function to capture frame from video stream
+          function captureFrame() {
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          }
+
+          // Function to send captured image to backend for mood detection
+          function detectMood() {
+              // Convert captured image to base64 string
+              var base64ImageData = canvas.toDataURL().split(',')[1]; // Remove the "data:image/png;base64," prefix
+  
+  // Add padding if necessary
+  while (base64ImageData.length % 4 !== 0) {
+      base64ImageData += '=';
+  }
+              // Send captured image to backend for mood detection
+              $.ajax({
+                  type: 'POST',
+                  url: '{% url "detect_mood" %}',
+                  data: {
+                      csrfmiddlewaretoken: '{{ csrf_token }}', // Manually add CSRF token
+                      image_data: base64ImageData // Send captured image as base64 data URI
+                  },
+                  dataType: 'json',
+                  success: function(data) {
+                      $('#result').text('Detected mood: ' + data.result);
+                      $('#result').text('Songs for Mood: ' + data.result); // Update mood label
+        const songs = data.songs; // Retrieve songs data
+        const songContainer = document.getElementById('songContainer'); // Get song container element
+        songContainer.innerHTML = ''; // Clear existing content
+        
+        // Iterate over each song and create HTML elements to display them
+        songs.forEach(song => {
+    const songCard = document.createElement('div');
+    songCard.classList.add('songCard');
+    songCard.innerHTML = `
+        <span class="material-symbols-outlined" id="cardplayicon">play_arrow</span>
+        <img src="${song.image_url}" class="cardImage">
+        <p class="songName">${song.name}</p>
+        <p class="songDescription">${song.artist}<br>&nbsp;</p>
+    `;
+    songCard.onclick = function() {
+        playSong(song.mp3_url, song.name, song.artist, song.image_url);
+    };
+    songContainer.appendChild(songCard); // Append song card to the song container
+});
+
+                  },
+                  error: function(xhr, status, error) {
+                      $('#result').text('Error: ' + error);
+                  }
+              });
+          }
+
+          // Event listener for the capture button
+          $('#captureButton').click(function() {
+              captureFrame(); // Capture the current frame from the video feed
+          });
+
+          // Event listener for the detect button
+          $('#detectButton').click(function() {
+              detectMood(); // Call the mood detection function when the button is clicked
+          });
+      });
+      
+        function playSong(audioUrl, title, artist, thumbnailUrl) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const currentSongDetails = document.querySelector('.currentMusic-Player');
+            const playButton = document.getElementById('controlicon-play');
+            const progressBarFill = document.querySelector('.progressBarFill');
+            const progressBarBullet = document.getElementById('progressbarBullet');
+            const currentTime = document.getElementById('currentTime');
+            const totalDuration = document.getElementById('totalDuration');
+
+            if (audioPlayer && currentSongDetails && playButton && progressBarFill && progressBarBullet && currentTime && totalDuration) {
+                // Set the audio source to the clicked song
+                audioPlayer.src = audioUrl;
+
+                currentSongDetails.innerHTML = `${title}<p>${artist}</p>`;
+                
+                document.querySelector('.main-window-playlist-thumb').src = thumbnailUrl;
+
+                // Play the audio
+                audioPlayer.play();
+
+                // Update the play button icon
+                playButton.innerText = 'pause_circle';
+
+                // Update song duration
+                audioPlayer.addEventListener('loadedmetadata', () => {
+                    totalDuration.textContent = formatTime(audioPlayer.duration);
+                });
+
+                // Update progress bar and current time
+                audioPlayer.addEventListener('timeupdate', () => {
+                    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    progressBarFill.style.width = `${progress}%`;
+                    progressBarBullet.style.left = `${progress - 1}%`;
+                    currentTime.textContent = formatTime(audioPlayer.currentTime);
+                });
+
+                // Pause/play functionality
+                playButton.addEventListener('click', () => {
+                    if (audioPlayer.paused) {
+                        audioPlayer.play();
+                        playButton.innerText = 'pause_circle';
+                    } else {
+                        audioPlayer.pause();
+                        playButton.innerText = 'play_circle';
+                    }
+                });
+            } else {
+                console.error('Some required elements are not found.');
+            }
+        }
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+    </script>
+ 
+    
+
+
+</body></html>
