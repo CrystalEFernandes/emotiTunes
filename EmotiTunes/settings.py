@@ -139,8 +139,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # You don't need to define storage backends individually unless you have custom requirements
 
 # AWS Configuration
-AWS_ACCESS_KEY_ID = 'AKIA44ERHGYR3URKBM7J'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'emotitunes-bucket'
+AWS_ACCESS_KEY_ID = 'XYZ'
+AWS_SECRET_ACCESS_KEY = 'XYZ'
+AWS_STORAGE_BUCKET_NAME = 'XYZ-bucket'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_FILE_OVERWRITE = False
